@@ -1,0 +1,13 @@
+{:paths
+ ["dev" "notebooks"]
+
+ :deps
+ {io.github.nextjournal/clerk {:git/sha "464d8fb8549df62a1178fb2fb5e8392dbac0028e"}
+  org.clojure/clojure {:mvn/version "1.11.1"}
+  org.clojure/test.check {:mvn/version "1.1.1"}}
+
+ :aliases
+ {:nextjournal/clerk
+  {:exec-fn nextjournal.clerk/build!
+   :exec-args {:paths ["notebooks/**"]
+               :index "notebooks/index.clj"}}}}
