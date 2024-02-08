@@ -20,22 +20,21 @@
 
 ;; ## Create
 
-;; We often create sets using the literal square-bracket syntax `#{}`:
-
+;; We often create sets using the literal syntax `#{}`:
 ^{:nextjournal.clerk/visibility {:result :hide}}
 #{"John" true 42}
 
 ;; ### set
 
-;; We can also create sets from other collections using `set`:
+;; But we can also create sets from other collections using `set`:
 (set [1 6 1 8 0 3 3])
 
-;; Note that we have lost both the duplicates, as well as any order in the
-;; original vector.
+;; Note that we have lost the duplicates, as well as any order in the original
+;; vector.
 
 ;; ### hash-set
 
-;; We can create a set using the elements directly with `hash-set`:
+;; We can also create a set using the elements directly with `hash-set`:
 (hash-set 1 6 1 8 0 3 3)
 
 ;; ### sorted-set
@@ -161,26 +160,27 @@
   :nextjournal.clerk/width :prose}
 (clerk/table (vec people))
 
-;; The functions in this section allow performing various relation-like queries
-;; on such data.
+;; The functions in this section perform relation-like queries on such data.
 
 ;; ### select
 
-;; If we want to select the "records" where age is greater than `40`:
-(set/select #(<= 40 (get % :age)) people)
+;; If we want to select the people whose age is greater than `40`:
+(set/select (fn [m]
+              (<= 40 (get m :age))) people)
 
 ;; ### rename
 
-;; If we want all records but with some of their keys renamed:
+;; If we want to rename some of the keys:
 ^{:nextjournal.clerk/auto-expand-results? true}
 (set/rename people {:name :first-name})
 
 ;; ### project
 
-;; If we want all the records but only some of the keys in each map:
-(into #{} (map #(select-keys % [:name])) people)
+;; If we only want some of the keys we could write:
+(into #{} (map (fn [m]
+                 (select-keys m [:name]))) people)
 
-;; or using `project`:
+;; or use `project`:
 (set/project people [:name])
 
 ;; ## What's next?
