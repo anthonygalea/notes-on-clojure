@@ -625,7 +625,7 @@
 ;; Generate a range of values:
 (range 20)
 
-;; Start from a value other than 0:
+;; Start from a value other than `0`:
 (range 10 20)
 
 ^{:nextjournal.clerk/visibility {:code :hide}}
@@ -680,20 +680,6 @@
 ;; each subsequent element by applying a function to the previous element can be
 ;; expressed using `iterate`:
 (take 5 (iterate inc 1))
-
-;; ### realized?
-
-;; We can use `realized?` to check whether a lazy sequence was evaluated. For
-;; example:
-(def three-random-integers (take 3 (repeatedly rand-int)))
-(realized? three-random-integers)
-
-;; As you can see `realized?` returns `false`. Now say we use the values:
-(into [] three-random-integers)
-
-;; After that `realized?` returns true:
-^{:nextjournal.clerk/no-cache true}
-(realized? three-random-integers)
 
 ;; ## Summary
 
