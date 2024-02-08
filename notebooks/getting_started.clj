@@ -26,8 +26,8 @@
 
 ;; ## Data
 
-;; If you type the string "Hello World" into the REPL and press the
-;; return key, it will evaluate to itself:
+;; If you type "Hello World" into the REPL and press the return key, it will
+;; evaluate to itself:
 
 ;; ```clj
 ;; "Hello World"
@@ -85,7 +85,7 @@
  [:div.absolute
   {:class "left-[200px] top-[-110px] w-full text-xs font-sans"}
   [:div.border.border-emerald-400.absolute.px-1.rounded
-   "call the function max, passing it the parameters 1 and 42"]
+   "call the function max, passing it the arguments 1 and 42"]
   [:div.border.border-emerald-400.absolute.px-1.rounded
    {:class "top-[50px]"}
    "when the expression returns we get 42"]])
@@ -164,12 +164,6 @@
       c 43]
   (max a b c))
 
-;; Note that when binding a symbol we are not limited to primitive values, we can
-;; bind to any expression we like:
-(let [a (* 2 3)
-      b (+ 42 5)]
-  (max a b))
-
 ;; Let's rewrite some of the expressions above using `let`:
 (let [who "John"]
   (str "Hello " who))
@@ -210,26 +204,26 @@
 
 ;; We can also create our own functions:
 ^{:nextjournal.clerk/visibility {:result :hide}}
-(fn [n]
-  (+ n 42))
+(fn [first-name]
+  (str "Hello " first-name))
 
 ^{:nextjournal.clerk/visibility {:code :hide}}
 (clerk/html
  [:div.absolute
   {:class "left-[300px] top-[-75px] w-full text-xs font-sans"}
   [:div.border.border-emerald-400.absolute.px-1.rounded
-   "make a function that takes one parameter (which we name n)"]
+   "make a function that takes one parameter (which we name first-name)"]
   [:div.border.border-emerald-400.absolute.px-1.rounded
    {:class "top-[25px]"}
-   "when it is called we will add 42 to n and return the result"]])
+   "if the function is called, create a string saying hello and return the result"]])
 
-;; If we combine this with `def`:
+;; If we combine this with a `def`:
 ^{:nextjournal.clerk/visibility {:result :hide}}
-(def add-42 (fn [n]
-              (+ n 42)))
+(def say-hello (fn [first-name]
+                 (str "Hello " first-name)))
 
 ;; we can use it like any of the functions above:
-(add-42 5)
+(say-hello "Olivia")
 
 ;; ## What's next?
 
