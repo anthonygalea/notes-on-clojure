@@ -26,26 +26,22 @@
 
 ;; ## Create
 
-;; The most common way to create a map is using the literal syntax `{}`:
-
+;; We often create maps using the literal syntax `{}`:
 ^{:nextjournal.clerk/visibility {:result :hide}}
 {:a 1 :b 2}
 
-;; but there are some other alternatives too:
-
 ;; ### hash-map
 
+;; But we can also create maps using the elements directly using `hash-map`:
 (hash-map :a 1 :b 2)
 
 ;; In such cases the literal syntax `{}` is preferable because it's less
 ;; verbose, but `hash-map` can be useful when passed to higher-order
 ;; functions. Say we have a vector and we want to make a map out of it:
-
 (apply hash-map ["k1" "v1" "k2" "v2"])
 
 ;; Note that we need to ensure we have an even number of arguments, otherwise
 ;; we will get an `IllegalArgumentException`:
-
 (try
   (hash-map :a 1 :b)
   (catch IllegalArgumentException e
@@ -57,7 +53,6 @@
 ;; ### array-map
 
 ;; Just like  `hash-map`, `array-map` produces a map:
-
 (hash-map)
 (array-map)
 
@@ -71,17 +66,14 @@
 
 ;; In fact when we create a small map using the literal syntax `{}` we also get
 ;; a `PersistentArrayMap`:
-
 (type {:a 1 :b 2 :c 3 :d 4 :e 5 :f 6 :g 7 :h 8})
 
 ;; but as soon as we go past 8 entries we get a `PersistentHashMap`:
-
 (type (assoc {:a 1 :b 2 :c 3 :d 4 :e 5 :f 6 :g 7 :h 8} :i 9))
 
 ;; ### sorted-map
 
-;; `sorted-map` returns maps which retain key ordering:
-
+;; If we want to retain key ordering we can use `sorted-map`:
 (sorted-map "c" 3 "a" 42 "d" 4 "b" 7)
 (sorted-map 3 "c" 42 "a" 4 "d" 7 "b")
 
@@ -90,14 +82,12 @@
 ;; `sorted-map` uses the default comparator `compare` to maintain
 ;; order. `sorted-map-by` can be used to pass a different comparator, for
 ;; example:
-
 (sorted-map-by > 3 "c" 42 "a" 4 "d" 7 "b")
 
 ;; ### zipmap
 
 ;; If we have two collections, one for keys, and another for values and we want
 ;; to make a map out of them we can use `zipmap`:
-
 (zipmap [:a :b :c] [1 2 3])
 
 ;; If there are more values than keys the extra values are ignored:
@@ -127,13 +117,13 @@
 
 ;; ### key
 
-;; If we have an entry we can get it's key:
+;; If we have an entry we can get its key:
 (let [e (first {:a 1 :b 2})]
   (key e))
 
 ;; ### val
 
-;; or it's value:
+;; or its value:
 (let [e (first {:a 1 :b 2})]
   (val e))
 
@@ -189,8 +179,8 @@
 
 ;; Note that deep maps are not merged recursively, so in this example `:b` is
 ;; lost and `:c` is only there because it's in the second map:
-
 (merge {:a {:b 2 :c 3}} {:a {:c 4 :d 5}})
+
 ;; If you need to do a deep merge one alternative is to
 ;; use [deep-merge](https://cljdoc.org/d/medley/medley/1.4.0/api/medley.core#deep-merge)
 ;; from the [medley](https://cljdoc.org/d/medley/medley/1.4.0/doc/readme)
@@ -244,7 +234,7 @@
 (update-keys {:a 1 :b 2 :c 3} name)
 
 ;; Note that this is not recursive. If that's what you want
-;; see [keywordize-keys](#keywordize-keys) below.
+;; see [stringify-keys](#stringify-keys) below.
 
 ;; ## clojure.walk
 
@@ -288,7 +278,7 @@
 
 ;; ### rename-keys
 
-;; Sometimes we are given a map and we would like to rename it's keys:
+;; Sometimes we are given a map and we would like to rename its keys:
 (set/rename-keys {:name "John"
                   :surname "McCarthy"}
                  {:name :first-name
