@@ -144,7 +144,7 @@
 
 ;; ### select-keys
 
-;; Sometimes we want a map containing only some of the entries in another map:
+;; Sometimes we only want some of the entries of a map:
 (select-keys {:a 1 :b 2 :c 3 :d 4} [:a :c])
 
 ;; ## Process
