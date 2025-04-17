@@ -3,7 +3,8 @@
   :nextjournal.clerk/toc true}
 (ns notebooks.keywords
   (:require
-   [index :as i]))
+   [index :as i]
+   [nextjournal.clerk :as clerk]))
 
 ;; > 👉 Keywords:
 ;; > * start with a leading colon

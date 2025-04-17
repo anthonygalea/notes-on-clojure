@@ -2,7 +2,7 @@
  ["dev" "notebooks"]
 
  :deps
- {io.github.nextjournal/clerk {:git/sha "464d8fb8549df62a1178fb2fb5e8392dbac0028e"}
+ {io.github.nextjournal/clerk {:mvn/version "0.17.1102"}
   org.clojure/clojure {:mvn/version "1.11.1"}
   org.clojure/test.check {:mvn/version "1.1.1"}}
 
