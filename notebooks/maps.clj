@@ -217,8 +217,18 @@
 
 ;; ### reduce-kv
 
+;; reduce-kv takes three arguments:
+;; 1. A function that takes three arguments. `m` is the accumulator, `k` is the key, and `v` is the value. Returns the resulting accumulator.
+;; 2. The initial value
+;; 3. The map to loop through
+
+;; Increment each element by one
 (reduce-kv (fn [m k v]
              (assoc m k (inc v))) {} {:a 1 :b 2 :c 3})
+
+;; Calculates the sum of all values
+(reduce-kv (fn [m _ v]
+             (+ m v)) 0 {:a 1 :b 2 :c 3})
 
 ;; ### update-vals
 
@@ -237,6 +247,13 @@
 ;; see [stringify-keys](#stringify-keys) below.
 
 ;; ## clojure.walk
+
+;; ```clj
+;; (ns my-project.my-file
+;;   "documentation goes here"
+;;   (:require
+;;    [clojure.walk :as walk])
+;; ```
 
 ;; There are two functions in the `clojure.walk` namespace that operate on maps
 ;; that are quite useful:
@@ -272,6 +289,13 @@
                                 :country "Spain"}})
 
 ;; ## clojure.set
+
+;; ```clj
+;; (ns my-project.my-file
+;;   "documentation goes here"
+;;   (:require
+;;    [clojure.set :as set])
+;; ```
 
 ;; There are two functions in the `clojure.set` namespace that operate on maps
 ;; that are quite useful:

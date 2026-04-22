@@ -15,7 +15,7 @@
 ;; > 1. Finally we will show how we can give [names](#let) to things and create
 ;; > our own functions
 ;; >
-;; > ℹ️ If you want to try the examples below, one way to do that is to [set up a
+;; > ℹ️ If you want to try the examples below, feel free to [clone this repository](https://github.com/anthonygalea/notes-on-clojure) and [set up a
 ;; > Clojure REPL](https://clojure.org/guides/install_clojure). Once installed just
 ;; > run `clj`:
 ;; >

@@ -270,28 +270,31 @@
 ;; same output. In this case we might want to cache the return value of the
 ;; first call, so that we don't have to recompute it for subsequent calls.
 
-;; We can demonstrate this with `rand`. Every time we call `rand` with the same
+;; We can demonstrate this with `rand-int`. Every time we call `rand-int` with the same
 ;; argument, each invocation will cause the body to run:
-(rand 10)
+(rand-int 100)
 ^{:nextjournal.clerk/no-cache true}
-(rand 10)
+(rand-int 100)
 ^{:nextjournal.clerk/no-cache true}
-(rand 10)
+(rand-int 100)
 
 ;; so in this case we got a different random number for the second and third
-;; calls. But if we `(memoize rand)`:
+;; calls. But if we `(memoize rand-int)`:
 ^{:nextjournal.clerk/visibility {:result :hide}}
-(def rand-once (memoize rand))
+(def rand-once (memoize rand-int))
 
-;; when we call `rand-once` with `10`, the first time it will generate a random
-;; number between `0` and `10`, store it in a cache, and return that to the
+;; when we call `rand-once` with `100`, the first time it will generate a random
+;; number between `0` and `100`, store it in a cache, and return that to the
 ;; caller.
-(rand-once 10)
+(rand-once 100)
 
-;; But any further invocations with `10` will just retrieve the value from the
+;; If we call the function with `40` it will generate a different value:
+(rand-once 40)
+
+;; But any further invocations with `100` will just retrieve the value from the
 ;; cache:
-(rand-once 10)
-(rand-once 10)
+(rand-once 100)
+(rand-once 100)
 
 ;; ## What's next?
 

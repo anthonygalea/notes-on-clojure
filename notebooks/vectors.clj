@@ -134,7 +134,7 @@
 
 ;; ### mapv
 
-;; A better alternative is to use `mapv`:
+;; `mapv` immediately returns a vector:
 (mapv odd? [1 2 3 4 5 6 7])
 
 ;; ### filterv
